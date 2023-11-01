@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NpcOpenAI : MonoBehaviour
 {
-    public void testPrint()
+    public void testPrint(string message)
     {
-        print("hello there general kenobi");
+        print(message);
     }
 }
