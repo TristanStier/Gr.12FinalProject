@@ -3,18 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
     private NpcOpenAI npc = null;
+    public bool interacting = false;
+    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private Button sendButton;
+    
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.E) == true && interacting == false && npc != null)
+        {
+            print("interacting");
+            interacting = true;
+            npc.interacting = true;
+            this.gameObject.GetComponent<PlayerMovement>().canMove = false;
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
+        }
+        
+        if(Input.GetKey(KeyCode.R) == true && interacting == true && npc != null)
+        {
+            print("not interacting");
+            interacting = false;
+            npc.interacting = false;
+            this.gameObject.GetComponent<PlayerMovement>().canMove = true;
+        }
 
-    // private void OnTriggerStay2D(Collider2D collision)
-    // {
-    //     if(Input.GetKey(KeyCode.E) == true && collision.gameObject.tag == "NPC")
-    //     {
-    //         collision.gameObject.GetComponent<NpcOpenAI>().testPrint(); // Some reason I can't change the name to NPCOpenAi so as of now the naming isnt consistent
-    //     }
-    // }
+        if(interacting == true)
+        {
+            inputField.gameObject.SetActive(true);
+            sendButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            inputField.gameObject.SetActive(false);
+            sendButton.gameObject.SetActive(false);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,11 +59,11 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    public void sendMessage(TMP_InputField message)
+    public void sendMessage()
     {
-        if(npc != null)
+        if(npc != null && interacting == true)
         {
-            npc.testPrint(message.text);
+            npc.testPrint(inputField.text);
         }
     }
 }

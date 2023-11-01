@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 5;
     private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask groundLayer;
+    public bool canMove = true;
 
     private void Awake()
     {
@@ -23,20 +24,23 @@ public class PlayerMovement : MonoBehaviour
         // Movement
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        body.velocity = new UnityEngine.Vector2(horizontalInput * speed, body.velocity.y);
+        if(canMove == true)
+        {
+            body.velocity = new UnityEngine.Vector2(horizontalInput * speed, body.velocity.y);
+        }
 
         // Flipping Character
-        if(horizontalInput > 0.01f)
+        if(horizontalInput > 0.01f && canMove == true)
         {
             transform.localScale = new UnityEngine.Vector3(1, 1, 1);
         }
-        else if(horizontalInput < -0.01f)
+        else if(horizontalInput < -0.01f  && canMove == true)
         {
             transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
         }
 
         // Jumping
-        if(Input.GetKey(KeyCode.Space) && isGrounded())
+        if(Input.GetKey(KeyCode.Space) && isGrounded() && canMove == true)
         {
             Jump();
         }
