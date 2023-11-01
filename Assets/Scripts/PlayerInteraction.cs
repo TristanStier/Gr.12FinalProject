@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private NpcOpenAI npc = null;
+    private OpenAI.NpcOpenAI npc = null;
     public bool interacting = false;
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private Button sendButton;
@@ -48,7 +48,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if(collision.gameObject.tag == "NPC")
         {
-            npc = collision.gameObject.GetComponent<NpcOpenAI>();
+            npc = collision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
         }
     }
 
@@ -64,7 +64,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if(npc != null && interacting == true)
         {
-            npc.testPrint(inputField.text);
+            npc.SendRequest(inputField.text);
         }
     }
 }
