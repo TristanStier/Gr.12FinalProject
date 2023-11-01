@@ -21,9 +21,10 @@ public class PlayerInteraction : MonoBehaviour
             npc.interacting = true;
             this.gameObject.GetComponent<PlayerMovement>().canMove = false;
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
+            npc.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
         }
         
-        if(Input.GetKey(KeyCode.R) == true && interacting == true && npc != null)
+        if(Input.GetKey(KeyCode.Escape) == true && interacting == true && npc != null)
         {
             print("not interacting");
             interacting = false;

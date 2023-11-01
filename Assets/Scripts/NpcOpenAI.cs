@@ -6,13 +6,8 @@ public class NpcOpenAI : MonoBehaviour
 {
     public bool interacting = false;
 
-    // private void Update()
-    // {
-    //     print("NPC: " + interacting);
-    // }
-
     public void testPrint(string message)
     {
-        print(message);
+        ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 1.3f), message, 4f);
     }
 }
