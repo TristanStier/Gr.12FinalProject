@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour, IConversation
 {
-    private OpenAI.NpcOpenAI npc = null;
+    private OpenAI.NpcOpenAI npcAI = null;
     public bool interacting = false;
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private Button sendButton;
@@ -20,16 +20,16 @@ public class PlayerInteraction : MonoBehaviour, IConversation
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.E) == true && interacting == false && npc != null)
+        if(Input.GetKey(KeyCode.E) == true && interacting == false && npcAI != null)
         {
             beginConversation();
-            npc.beginConversation();
+            npcAI.beginConversation();
         }
         
-        if(Input.GetKey(KeyCode.Escape) == true && interacting == true && npc != null)
+        if(Input.GetKey(KeyCode.Escape) == true && interacting == true && npcAI != null)
         {
             endConversation();
-            npc.endConversation();
+            npcAI.endConversation();
         }
     }
 
@@ -37,7 +37,7 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     {
         if(collision.gameObject.tag == "NPC")
         {
-            npc = collision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
+            npcAI = collision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
         }
     }
 
@@ -45,21 +45,20 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     {
         if(collision.gameObject.tag == "NPC")
         {
-            npc = null;
+            npcAI = null;
         }
     }
 
     public void sendMessage()
     {
-        if(npc != null && interacting == true)
+        if(npcAI != null && interacting == true)
         {
-            npc.SendRequest(inputField.text);
+            npcAI.SendRequest(inputField.text);
         }
     }
 
     public void beginConversation()
     {
-        print("Player: Conversation Started");
         interacting = true;
         this.gameObject.GetComponent<PlayerMovement>().canMove = false;
         this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
@@ -69,7 +68,6 @@ public class PlayerInteraction : MonoBehaviour, IConversation
 
     public void endConversation()
     {
-        print("Player: Conversation Ended");
         interacting = false;
         this.gameObject.GetComponent<PlayerMovement>().canMove = true;
         inputField.gameObject.SetActive(false);
