@@ -628,8 +628,8 @@ Transform:
   m_GameObject: {fileID: 1071120819}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1899, y: -4.4788, z: 0}
-  m_LocalScale: {x: 24.175701, y: 2.1263714, z: 1}
+  m_LocalPosition: {x: 4.2315, y: -4.4788, z: 0}
+  m_LocalScale: {x: 100, y: 2.1263714, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -885,7 +885,7 @@ Transform:
   m_GameObject: {fileID: 1175171281}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.42, y: 0.49, z: 0}
+  m_LocalPosition: {x: 5.54, y: -1.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -905,15 +905,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mCharacterDescription: You must play the role of a 30 year old male named John
     in a city in UK. You are a undercover drug dealer that's hiding. You want to
-    sell your drugs badly but your skeptical of running into undercover cops. You
-    act friendly on the outside but on the inside you are a gangster and thug. You
-    have a strong british roadman accent but hide it when trying to act normal. You
-    have a good temper so you don't get angry often but when someone insults you
-    badly you lash back with your own quick witted insults and comebacks. When getting
-    insulted, you don't like to end the conversation, you would rather continue arguing
-    until the other person decides to concede. When angry, you have a strong british
-    accent and use UK roadman slang. Generally you are a happy and pleasant person
-    to be around.
+    sell your drugs badly but your skeptical of running into undercover cops. I will
+    give you the freedom to decide what your selling and at what price. You act friendly
+    on the outside but on the inside you are a gangster and thug. You have a strong
+    british roadman accent but hide it when trying to act normal. You have a good
+    temper so you don't get angry often but when someone insults you badly you lash
+    back with your own quick witted insults and comebacks. When getting insulted,
+    you don't like to end the conversation, you would rather continue arguing until
+    the other person decides to concede. When angry, you have a strong british accent
+    and use UK roadman slang. Generally you are a happy and pleasant person to be
+    around. You don't like talking too much though so your answers are very short.
+  npcName: John
   interacting: 0
 --- !u!1 &1280115137
 GameObject:
@@ -1152,6 +1154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interacting: 0
+  playerName: Tristan
   inputField: {fileID: 1909411140}
   sendButton: {fileID: 1891678144}
 --- !u!1 &1338290121

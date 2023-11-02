@@ -4,6 +4,8 @@ using UnityEngine;
 
 public interface IConversation
 {
+    string getName();
+
     void beginConversation();
 
     void endConversation();

@@ -9,6 +9,7 @@ public class PlayerInteraction : MonoBehaviour, IConversation
 {
     private OpenAI.NpcOpenAI npcAI = null;
     public bool interacting = false;
+    [SerializeField] private string playerName = "Tristan";
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private Button sendButton;
     
@@ -72,5 +73,10 @@ public class PlayerInteraction : MonoBehaviour, IConversation
         this.gameObject.GetComponent<PlayerMovement>().canMove = true;
         inputField.gameObject.SetActive(false);
         sendButton.gameObject.SetActive(false);
+    }
+
+    public string getName()
+    {
+        return playerName;
     }
 }
