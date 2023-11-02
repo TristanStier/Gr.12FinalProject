@@ -7,30 +7,26 @@ using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour, IConversation
 {
-    private OpenAI.NpcOpenAI npcAI = null;
-    public bool interacting = false;
-    [SerializeField] private string playerName = "Tristan";
-    [SerializeField] private TMP_InputField inputField;
-    [SerializeField] private Button sendButton;
+    private OpenAI.NpcOpenAI mNpcAI = null;
+    public bool mInteracting = false;
+    [SerializeField] private string mPlayerName = "Tristan";
+    [SerializeField] private TMP_InputField mInputField;
+    [SerializeField] private Button mSendButton;
+    [SerializeField] private TMP_InputField mNameField;
+    [SerializeField] private Button mChangeNameButton;
     
     private void Start()
     {
-        inputField.gameObject.SetActive(false);
-        sendButton.gameObject.SetActive(false);
+        mInputField.gameObject.SetActive(false);
+        mSendButton.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.E) == true && interacting == false && npcAI != null)
+        if(Input.GetKey(KeyCode.E) == true && mInteracting == false && mNpcAI != null)
         {
             beginConversation();
-            npcAI.beginConversation();
-        }
-        
-        if(Input.GetKey(KeyCode.Escape) == true && interacting == true && npcAI != null)
-        {
-            endConversation();
-            npcAI.endConversation();
+            mNpcAI.beginConversation();
         }
     }
 
@@ -38,7 +34,7 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     {
         if(collision.gameObject.tag == "NPC")
         {
-            npcAI = collision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
+            mNpcAI = collision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
         }
     }
 
@@ -46,37 +42,45 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     {
         if(collision.gameObject.tag == "NPC")
         {
-            npcAI = null;
+            mNpcAI = null;
         }
     }
 
     public void sendMessage()
     {
-        if(npcAI != null && interacting == true)
+        if(mNpcAI != null && mInteracting == true)
         {
-            npcAI.SendRequest(inputField.text);
+            mNpcAI.SendRequest(mInputField.text);
         }
     }
 
     public void beginConversation()
     {
-        interacting = true;
+        mInteracting = true;
         this.gameObject.GetComponent<PlayerMovement>().canMove = false;
         this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
-        inputField.gameObject.SetActive(true);
-        sendButton.gameObject.SetActive(true);
+        mInputField.gameObject.SetActive(true);
+        mSendButton.gameObject.SetActive(true);
     }
 
     public void endConversation()
     {
-        interacting = false;
+        mInteracting = false;
         this.gameObject.GetComponent<PlayerMovement>().canMove = true;
-        inputField.gameObject.SetActive(false);
-        sendButton.gameObject.SetActive(false);
+        mInputField.gameObject.SetActive(false);
+        mSendButton.gameObject.SetActive(false);
     }
 
     public string getName()
     {
-        return playerName;
+        return mPlayerName;
+    }
+
+    public void changeName()
+    {
+        if(mNameField != null)
+        {
+            mPlayerName = mNameField.text;
+        }
     }
 }
