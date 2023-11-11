@@ -1698,7 +1698,7 @@ MonoBehaviour:
     the other person decides to concede. When angry, you have a strong british accent
     and use UK roadman slang. Generally you are a happy and pleasant person to be
     around. You don't like talking too much though so your answers are very short.
-  mNpcName: 
+  mNpcName: John
   mInteracting: 0
 --- !u!1 &1280115137
 GameObject:
@@ -1938,10 +1938,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mInteracting: 0
   mPlayerName: Tristan
-  mInputField: {fileID: 0}
-  mSendButton: {fileID: 0}
-  mNameField: {fileID: 0}
-  mChangeNameButton: {fileID: 0}
+  mInputField: {fileID: 1909411140}
+  mSendButton: {fileID: 1891678144}
+  mNameField: {fileID: 250033687}
+  mChangeNameButton: {fileID: 222728667}
 --- !u!1 &1338290121
 GameObject:
   m_ObjectHideFlags: 0

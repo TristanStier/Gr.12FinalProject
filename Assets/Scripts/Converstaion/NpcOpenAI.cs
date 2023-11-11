@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace OpenAI
@@ -9,7 +10,7 @@ namespace OpenAI
     {
         [SerializeField] private string mCharacterDescription = "";
         [SerializeField] private string mNpcName = "";
-        private string mSystemPrompt = "Your playing the role of a character in a city. You must never break character in any conversation ever. Your answers must be very short and concise to flow naturally with the conversation. When asked very specific questions I give you the freedom to make up your own answer. You must respond with a casual tone and can choose to end a conversation at any point if you want given the past exchanges. You must make the correct judgement based off your personality however try and converse when possible. If you choose to end the conversation and go on with your day, please end your reply with the phrase “[End]” . If you choose to continue the conversation, end your reply with [Continue] outside of quotation marks. Please include your name followed by a \": \" before every response.";
+        private string mSystemPrompt = "Your playing the role of a character in a city. You must never break character in any conversation ever. Your answers must be very short and concise to flow naturally with the conversation. When asked very specific questions about yourself I give you the freedom to make up your own answer. You must have emotion in your conversation and answer based off emotion. If someone is being mean to you, be mean back and be less likely to help them etc. I want you to act as human as possible with human emotions. You must respond with a casual tone and can choose to end a conversation at any point if you want given the past exchanges. You must make the correct judgement based off your personality however try and converse when possible. If you choose to end the conversation and go on with your day, please end your reply with the phrase “[End]” . If you choose to continue the conversation, end your reply with [Continue] outside of quotation marks. Please include your name followed by a \": \" before every response.";
         private string mInteractionsSummary = "";
         private OpenAIApi mOpenAI = new OpenAIApi();
         private List<ChatMessage> mMessages = new List<ChatMessage>();
@@ -40,8 +41,11 @@ namespace OpenAI
 
                 mMessages.Add(message);
                 string messageString = message.Content.ToString();
-                string messageToDisplay = messageString.Substring(0, messageString.LastIndexOf(" ")<0?0:messageString.LastIndexOf(" "));
-                ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 8f);
+                var matchResult = Regex.Match(messageString, @"^([\w\-]+)");
+                var firstWord = matchResult.Value;
+                var withoutFirstWord = messageString.Substring(firstWord.Length+2);
+                string messageToDisplay = withoutFirstWord.Substring(0, withoutFirstWord.LastIndexOf(" ")<0?0:withoutFirstWord.LastIndexOf(" "));
+                ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 6f);
                 
                 string lastWord = message.Content.ToString().Split(' ').Last();
                 if(lastWord == "[End]")
@@ -61,7 +65,7 @@ namespace OpenAI
             var summarizePrompt = new ChatMessage()
             {
                 Role = "user",
-                Content = "You can break character here and return to your default settings. I want you to summarize your past interactions and your current conversation into one big summary to serve as a memeroy for future encounters. Here is a summary/memory of your past interactions outside of your current conversation: " + mInteractionsSummary + ". I now want you to summarize your current conversation given the previous messages and then mix it in with your past interactions outside of the last converstaion to create 1 large recolection of memories. It should be written in first person in the format of: \" I met a man named ..., we talking a little bit about this and he left.\". Make sure you only summarize the key talking points and important ideas into a single short and concise summary. Don't include anything else in the summary other than your paste interactions with the converstaion you juts had. Make sure your summary encaptures the entire story and the bigger picture because the new memory your generating is going to replace your old one."
+                Content = "You can break character here and return to your default settings. I want you to summarize your past conversation given the context of your past interactions. Here is a summary/memory of your past interactions outside of your current conversation: " + mInteractionsSummary + ". I now want you to summarize your current conversation given the context of your previous interactions into a summary that will act as a memory for your conversation. It should be written in first person in the format of: \" I met a man named ..., we talking a little bit about this and he left.\". Make sure you only summarize the key talking points and important ideas into a single short and concise summary. Don't include anything else in the summary. It is important to put [Interaction (respective summary number): ] before each summary so I can add it into a list of memories and keep it in chronological order for future reference. You also should express your point of view on the topic in the summary. The summary is only for the past conversation and it must include important specifics rather than general idea so you can reference them in the future. If you ever make up an answer after being asked a specific question about yourself, make sure to include it in the summary and indicate that you said it about yourself."
             };
 
             messages.Add(summarizePrompt);
@@ -70,13 +74,13 @@ namespace OpenAI
             {
                 Model = "gpt-4",
                 Messages = messages,
-                MaxTokens = 2000
+                MaxTokens = 150
             });
             
             if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
             {
                 var message = completionResponse.Choices[0].Message;
-                mInteractionsSummary = message.Content.ToString();
+                mInteractionsSummary += "\n" + message.Content.ToString();
                 print(mInteractionsSummary);
                 messages.Clear();
             }
