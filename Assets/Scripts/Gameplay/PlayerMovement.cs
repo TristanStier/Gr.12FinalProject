@@ -4,43 +4,42 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // References
-    private Rigidbody2D body;
-    private Animator anim;
-    [SerializeField] private float speed = 10;
-    [SerializeField] private float jumpHeight = 5;
-    private BoxCollider2D boxCollider;
-    [SerializeField] private LayerMask groundLayer;
-    public bool canMove = true;
+    private Rigidbody2D mRigidBody;
+    [SerializeField] private float mSpeed = 10;
+    [SerializeField] private float mJumpHeight = 5;
+    private BoxCollider2D mBoxCollider;
+    [SerializeField] private LayerMask mGroundLayer;
+    public bool mCanMove = true;
 
     private void Awake()
     {
         // Setting References
-        body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        mRigidBody = GetComponent<Rigidbody2D>();
+        mBoxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
     {
         // Movement
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float lHorizontalInput = Input.GetAxis("Horizontal");
 
-        if(canMove == true)
+        if(mCanMove == true)
         {
-            body.velocity = new UnityEngine.Vector2(horizontalInput * speed, body.velocity.y);
+            mRigidBody.velocity = new UnityEngine.Vector2(lHorizontalInput * mSpeed, mRigidBody.velocity.y);
         }
 
         // Flipping Character
-        if(horizontalInput > 0.01f && canMove == true)
+        if(lHorizontalInput > 0.01f && mCanMove == true)
         {
             transform.localScale = new UnityEngine.Vector3(1, 1, 1);
         }
-        else if(horizontalInput < -0.01f  && canMove == true)
+        else if(lHorizontalInput < -0.01f  && mCanMove == true)
         {
             transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
         }
 
         // Jumping
-        if(Input.GetKey(KeyCode.Space) && isGrounded() && canMove == true)
+        if(Input.GetKey(KeyCode.Space) && isGrounded() && mCanMove == true)
         {
             Jump();
         }
@@ -48,12 +47,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        body.velocity = new UnityEngine.Vector2(body.velocity.x, jumpHeight);
+        mRigidBody.velocity = new UnityEngine.Vector2(mRigidBody.velocity.x, mJumpHeight);
     }
 
     private bool isGrounded()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, UnityEngine.Vector2.down, 0.1f, groundLayer);
-        return raycastHit.collider != null;
+        RaycastHit2D lRaycastHit = Physics2D.BoxCast(mBoxCollider.bounds.center, mBoxCollider.bounds.size, 0, UnityEngine.Vector2.down, 0.1f, mGroundLayer);
+        return lRaycastHit.collider != null;
     }
 }

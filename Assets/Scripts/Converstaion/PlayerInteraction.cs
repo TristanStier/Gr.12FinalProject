@@ -57,7 +57,7 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     public void beginConversation()
     {
         mInteracting = true;
-        this.gameObject.GetComponent<PlayerMovement>().canMove = false;
+        this.gameObject.GetComponent<PlayerMovement>().mCanMove = false;
         this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
         mInputField.gameObject.SetActive(true);
         mSendButton.gameObject.SetActive(true);
@@ -66,7 +66,7 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     public void endConversation()
     {
         mInteracting = false;
-        this.gameObject.GetComponent<PlayerMovement>().canMove = true;
+        this.gameObject.GetComponent<PlayerMovement>().mCanMove = true;
         mInputField.gameObject.SetActive(false);
         mSendButton.gameObject.SetActive(false);
     }

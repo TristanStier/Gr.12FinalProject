@@ -1483,6 +1483,7 @@ GameObject:
   - component: {fileID: 1175171283}
   - component: {fileID: 1175171282}
   - component: {fileID: 1175171287}
+  - component: {fileID: 1175171288}
   m_Layer: 0
   m_Name: Npc01
   m_TagString: NPC
@@ -1700,6 +1701,18 @@ MonoBehaviour:
     around. You don't like talking too much though so your answers are very short.
   mNpcName: John
   mInteracting: 0
+--- !u!114 &1175171288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175171281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c2e9f0098c6f84f9970860b912b771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1280115137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,12 +1931,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39ae96938e178049bb466611124c03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpHeight: 10
-  groundLayer:
+  mSpeed: 10
+  mJumpHeight: 7
+  mGroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  canMove: 1
+  mCanMove: 1
 --- !u!114 &1280115144
 MonoBehaviour:
   m_ObjectHideFlags: 0

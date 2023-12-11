@@ -60,7 +60,7 @@ namespace OpenAI
             }
         }
 
-        private async void summarizeConversation(string name, List<ChatMessage> messages)
+        private async void summarizeConversation(List<ChatMessage> iMessages)
         {
             // // INDIVIDUAL INTERACTIONS MEMORY CODE
             // var summarizePrompt = new ChatMessage()
@@ -76,12 +76,12 @@ namespace OpenAI
                 Content = "You can break character here and return to your default settings. I want you to summarize your past interactions and your current conversation into one big summary to serve as a memeroy for future encounters. Here is a summary/memory of your past interactions outside of your current conversation: " + mInteractionsSummary + ". I now want you to summarize your current conversation given the previous messages and then mix it in with your past interactions outside of the last converstaion to create 1 large recolection of memories. It should be written in first person in the format of: \" I met a man named ..., we talking a little bit about this and he left.\". Make sure you only summarize the key talking points and important ideas into a single short and concise summary. Don't include anything else in the summary other than your paste interactions with the converstaion you juts had."
             };
 
-            messages.Add(summarizePrompt);
+            iMessages.Add(summarizePrompt);
 
             var completionResponse = await mOpenAI.CreateChatCompletion(new CreateChatCompletionRequest()
             {
                 Model = "gpt-4",
-                Messages = messages,
+                Messages = iMessages,
                 MaxTokens = 150
             });
             
@@ -94,17 +94,17 @@ namespace OpenAI
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D iCollision)
         {
-            if(collision.gameObject.tag == "Player")
+            if(iCollision.gameObject.tag == "Player")
             {
-                mPlayerInteraction = collision.gameObject.GetComponent<PlayerInteraction>();
+                mPlayerInteraction = iCollision.gameObject.GetComponent<PlayerInteraction>();
             }
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
+        private void OnTriggerExit2D(Collider2D iCollision)
         {
-            if(collision.gameObject.tag == "Player")
+            if(iCollision.gameObject.tag == "Player")
             {
                 mPlayerInteraction = null;
             }
@@ -115,19 +115,19 @@ namespace OpenAI
             mInteracting = true;
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
 
-            var newMessage = new ChatMessage()
+            var lNewMessage = new ChatMessage()
             {
                 Role = "system",
                 Content = "Your name is: " + mNpcName + ". You must play a character living in a city. Here is a description of your character: " + mCharacterDescription + "\n" + "Here are specific requirements you must follow at all costs when conversing: " + mSystemPrompt + "Here is a summary of your last interactions, this is essentially your memory: " + mInteractionsSummary + ". You run into someone in the city and you start chatting."
             };
 
-            mMessages.Add(newMessage);
+            mMessages.Add(lNewMessage);
         }
 
         public void endConversation()
         {
             mInteracting = false;
-            // summarizeConversation(mPlayerInteraction.getName(), mMessages);
+            // summarizeConversation(mMessages);
             mMessages.Clear();
         }
 
