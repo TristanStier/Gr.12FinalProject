@@ -46,7 +46,7 @@ namespace OpenAI
                 var withoutFirstWord = messageString.Substring(firstWord.Length+2);
                 string messageToDisplay = withoutFirstWord.Substring(0, withoutFirstWord.LastIndexOf(" ")<0?0:withoutFirstWord.LastIndexOf(" "));
                 ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 6f);
-                
+
                 string lastWord = message.Content.ToString().Split(' ').Last();
                 if(lastWord == "[End]")
                 {
