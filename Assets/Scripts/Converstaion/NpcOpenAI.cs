@@ -113,6 +113,7 @@ namespace OpenAI
         public void beginConversation()
         {
             mInteracting = true;
+            gameObject.GetComponent<NPCMovement>().mCanMove = false;
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
 
             var lNewMessage = new ChatMessage()
@@ -127,6 +128,7 @@ namespace OpenAI
         public void endConversation()
         {
             mInteracting = false;
+            gameObject.GetComponent<NPCMovement>().mCanMove = true;
             // summarizeConversation(mMessages);
             mMessages.Clear();
         }

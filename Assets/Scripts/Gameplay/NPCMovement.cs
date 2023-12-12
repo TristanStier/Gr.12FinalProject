@@ -7,8 +7,9 @@ public class NPCMovement : MonoBehaviour
 {  
     private Rigidbody2D mRigidBody;
     private BoxCollider2D mBoxCollider;
-    private float mXPos;
-    private float mTargetXPos;
+    private int mXPos;
+    private int mTargetXPos;
+    public bool mCanMove = true;
     [SerializeField] private float mSpeed = 1;
 
     void Start()
@@ -21,28 +22,24 @@ public class NPCMovement : MonoBehaviour
 
     void Update()
     {
-        mXPos = gameObject.transform.position.x;
+        mXPos = (int)gameObject.transform.position.x;
 
-        if((int)mTargetXPos>(int)mXPos)
+        if(mTargetXPos>mXPos && mCanMove == true)
         {
             mRigidBody.velocity = new UnityEngine.Vector2(mSpeed, mRigidBody.velocity.y);
         }
-        else if((int)mTargetXPos<(int)mXPos)
+        else if(mTargetXPos<mXPos && mCanMove == true)
         {
             mRigidBody.velocity = new UnityEngine.Vector2(-mSpeed, mRigidBody.velocity.y);  
         }
-        else
+        else if(mCanMove == true)
         {
-            Invoke("FindNewPatrolPoint", 3);
-            print("waiting");
+            FindNewPatrolPoint();
         }
-
-        print("Target: " + (int)mTargetXPos + ", Current: " + (int)mXPos);
     }
 
     private void FindNewPatrolPoint()
     {
-        mTargetXPos = Random.Range(-11.0f, 11.0f);
-        print("done");
+        mTargetXPos = (int)Random.Range(-11.0f, 11.0f);
     }
 }
