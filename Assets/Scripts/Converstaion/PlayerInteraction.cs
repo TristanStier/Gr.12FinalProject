@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour, IConversation
 {
+    private List<OpenAI.NpcOpenAI> mNpcAIList = new List<OpenAI.NpcOpenAI>();
     private OpenAI.NpcOpenAI mNpcAI = null;
     public bool mInteracting = false;
     [SerializeField] private string mPlayerName = "Tristan";
@@ -23,9 +24,10 @@ public class PlayerInteraction : MonoBehaviour, IConversation
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.E) == true && mInteracting == false && mNpcAI != null)
+        if(Input.GetKey(KeyCode.E) == true && mInteracting == false && mNpcAIList.Count>0)
         {
             beginConversation();
+            mNpcAI = getClosestAI();
             mNpcAI.beginConversation();
         }
     }
@@ -34,7 +36,7 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     {
         if(collision.gameObject.tag == "NPC")
         {
-            mNpcAI = collision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
+            mNpcAIList.Add(collision.gameObject.GetComponent<OpenAI.NpcOpenAI>());
         }
     }
 
@@ -42,15 +44,42 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     {
         if(collision.gameObject.tag == "NPC")
         {
-            mNpcAI = null;
+            mNpcAIList.Remove(collision.gameObject.GetComponent<OpenAI.NpcOpenAI>());
         }
     }
 
     public void sendMessage()
     {
-        if(mNpcAI != null && mInteracting == true)
+        if(mNpcAIList.Count>0 && mInteracting == true)
         {
             mNpcAI.SendRequest(mInputField.text);
+        }
+    }
+
+    private OpenAI.NpcOpenAI getClosestAI()
+    {
+        if(mNpcAIList.Count == 1)
+        {
+            return mNpcAIList[0];
+        }
+        else
+        {
+            float lLowestDist = Mathf.Infinity;
+            OpenAI.NpcOpenAI lClosestNPC = mNpcAIList[0];
+
+            for(int i=0; i<mNpcAIList.Count; i++)
+            {
+    
+                float lDistance = Vector3.Distance(mNpcAIList[i].transform.position, transform.position);
+    
+                if (lDistance<lLowestDist)
+                {
+                    lLowestDist = lDistance;
+                    lClosestNPC = mNpcAIList[i];
+                }
+            }
+
+            return lClosestNPC;
         }
     }
 
