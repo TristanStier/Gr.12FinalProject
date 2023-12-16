@@ -3,9 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.Networking;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OpenAI
 {
+
+    public struct OpenAiChatMessage
+    {
+        public string Role { get; set; }
+        public string Content { get; set; }
+    }
+
+    public sealed class OpenAiRequest
+    {
+        public string Model { get; set; }
+        public List<OpenAiChatMessage> Messages { get; set; }
+        public float? Temperature { get; set; } = 1f;
+        public int? MaxTokens { get; set; }
+
+        /*
+        public int N { get; set; } = 1;
+        public bool Stream { get; set; }
+        public string Stop { get; set; }
+        public float? PresencePenalty { get; set; } = 0f;
+        public float? FrequencyPenalty { get; set; } = 0f;
+        public Dictionary<string, string> LogitBias { get; set; }
+        public string User { get; set; }
+        public string SystemFingerprint { get; set; }
+        */
+    }
+    
+     public struct OpenAiResponse
+    {
+        public ApiError Error { get; set; }
+        public string Warning { get; set; }
+        public string Model { get; set; }
+        public string Id { get; set; }
+        public string Object { get; set; }
+        public long Created { get; set; }
+        public List<OpenAiChatChoice> Choices { get; set; }
+        public Usage Usage { get; set; }
+        public string SystemFingerprint { get; set; }
+    }
+    
+    public struct OpenAiChatChoice
+    {
+        public OpenAiChatMessage Message { get; set; }
+        public OpenAiChatMessage Delta { get; set; }
+        public int? Index { get; set; }
+        public string FinishReason { get; set; }
+    }
+   
+
     public class NpcOpenAI : MonoBehaviour, IConversation
     {
         [SerializeField] private string mCharacterDescription = "";
@@ -14,12 +68,19 @@ namespace OpenAI
         private string mInteractionsSummary = "";
         private OpenAIApi mOpenAI = new OpenAIApi();
         private List<ChatMessage> mMessages = new List<ChatMessage>();
-
+        private OpenAI.NpcOpenAI mNpcAI = null;
+        public int mId;
         private PlayerInteraction mPlayerInteraction = null;
         public bool mInteracting = false;
 
+        void Start()
+        {
+            mId = (int)UnityEngine.Random.Range(-1000000000, 1000000000);
+        }
+
         public async void SendRequest(string pPrompt)
         {
+            print("hello");
             var newMessage = new ChatMessage()
             {
                 Role = "user",
@@ -28,6 +89,32 @@ namespace OpenAI
 
             mMessages.Add(newMessage);
 
+            string s = JsonConvert.SerializeObject(new CreateChatCompletionRequest()
+            {
+                Model = "gpt-4",
+                Messages = mMessages,
+                MaxTokens = 120
+            });
+            
+            print(s);
+            using (var request = UnityWebRequest.Put("https://api.openai.com/v1/chat/completions", Encoding.UTF8.GetBytes(s)))
+            {
+                request.method = "POST";
+                request.SetRequestHeader("OpenAI-Organization", "org-UHjJR7lHAqlaPyuoqEhC86jm");
+                request.SetRequestHeader("Content-Type", ContentType.ApplicationJson);
+                request.SetRequestHeader("Authorization", "Bearer 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");
+
+                var asyncOperation = request.SendWebRequest();
+
+                while (!asyncOperation.isDone) await Task.Yield();
+
+                print(request.downloadHandler.text);
+                //
+                OpenAiResponse data = JsonConvert.DeserializeObject<OpenAiResponse>(request.downloadHandler.text);
+            }
+
+ 
+        /*
             var completionResponse = await mOpenAI.CreateChatCompletion(new CreateChatCompletionRequest()
             {
                 Model = "gpt-4",
@@ -46,18 +133,35 @@ namespace OpenAI
                 var withoutFirstWord = messageString.Substring(firstWord.Length+2);
                 string messageToDisplay = withoutFirstWord.Substring(0, withoutFirstWord.LastIndexOf(" ")<0?0:withoutFirstWord.LastIndexOf(" "));
                 ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 6f);
-
                 string lastWord = message.Content.ToString().Split(' ').Last();
-                if(lastWord == "[End]")
+                
+                if(mPlayerInteraction != null)
                 {
-                    mPlayerInteraction.endConversation();
-                    endConversation();
+                    if(lastWord == "[End]")
+                    {
+                        mPlayerInteraction.endConversation();
+                        endConversation();
+                    }
+                }
+                
+                if(mNpcAI != null)
+                {
+                    if(lastWord == "[End]")
+                    {
+                        mNpcAI.endConversation();
+                        endConversation();
+                    }
+                    else
+                    {
+                        mNpcAI.SendRequest(messageToDisplay);
+                    }
                 }
             }
             else
             {
                 Debug.LogWarning("No text was generated from this prompt.");
             }
+            */
         }
 
         private async void summarizeConversation(List<ChatMessage> iMessages)
@@ -100,6 +204,18 @@ namespace OpenAI
             {
                 mPlayerInteraction = iCollision.gameObject.GetComponent<PlayerInteraction>();
             }
+            if(iCollision.gameObject.tag == "NPC")
+            {
+                mNpcAI = iCollision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
+
+                if(mId>mNpcAI.mId)
+                {
+                    beginConversation();
+                    mNpcAI.beginConversation();
+                    mNpcAI.SendRequest("Hello");
+                    ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), "Hello", 6f);
+                }
+            }
         }
 
         private void OnTriggerExit2D(Collider2D iCollision)
@@ -107,6 +223,10 @@ namespace OpenAI
             if(iCollision.gameObject.tag == "Player")
             {
                 mPlayerInteraction = null;
+            }
+            if(iCollision.gameObject.tag == "NPC")
+            {
+                mNpcAI = null;
             }
         }
 
