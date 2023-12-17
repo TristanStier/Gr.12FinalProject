@@ -15,48 +15,40 @@ namespace OpenAI
 
     public struct OpenAiChatMessage
     {
-        public string Role { get; set; }
-        public string Content { get; set; }
+        public string role { get; set; }
+        public string content { get; set; }
     }
 
     public sealed class OpenAiRequest
     {
-        public string Model { get; set; }
-        public List<OpenAiChatMessage> Messages { get; set; }
-        public float? Temperature { get; set; } = 1f;
-        public int? MaxTokens { get; set; }
-
-        /*
-        public int N { get; set; } = 1;
-        public bool Stream { get; set; }
-        public string Stop { get; set; }
-        public float? PresencePenalty { get; set; } = 0f;
-        public float? FrequencyPenalty { get; set; } = 0f;
-        public Dictionary<string, string> LogitBias { get; set; }
-        public string User { get; set; }
-        public string SystemFingerprint { get; set; }
-        */
+        public string model { get; set; }
+        public List<OpenAiChatMessage> messages { get; set; }
+        public float? temperature { get; set; } = 1f;
+        public float? top_p { get; set; } = 1f;
+        public int? max_tokens { get; set; }
+        public float? presence_penalty { get; set; } = 0f;
+        public float? frequency_penalty { get; set; } = 0f;
     }
     
      public struct OpenAiResponse
     {
-        public ApiError Error { get; set; }
-        public string Warning { get; set; }
-        public string Model { get; set; }
-        public string Id { get; set; }
-        public string Object { get; set; }
-        public long Created { get; set; }
-        public List<OpenAiChatChoice> Choices { get; set; }
-        public Usage Usage { get; set; }
-        public string SystemFingerprint { get; set; }
+        public ApiError error { get; set; }
+        public string warning { get; set; }
+        public string model { get; set; }
+        public string id { get; set; }
+        // public string object { get; set; }
+        public long created { get; set; }
+        public List<OpenAiChatChoice> choices { get; set; }
+        public Usage usage { get; set; }
+        public string system_fingerprint { get; set; }
     }
     
     public struct OpenAiChatChoice
     {
-        public OpenAiChatMessage Message { get; set; }
-        public OpenAiChatMessage Delta { get; set; }
-        public int? Index { get; set; }
-        public string FinishReason { get; set; }
+        public OpenAiChatMessage message { get; set; }
+        public OpenAiChatMessage delta { get; set; }
+        public int? index { get; set; }
+        public string finish_reason { get; set; }
     }
    
 
@@ -67,7 +59,7 @@ namespace OpenAI
         private string mSystemPrompt = "Your playing the role of a character in a city. You must never break character in any conversation ever. Your answers must be very short and concise to flow naturally with the conversation. When asked very specific questions about yourself I give you the freedom to make up your own answer. You must have emotion in your conversation and answer based off emotion. If someone is being mean to you, be mean back and be less likely to help them etc. I want you to act as human as possible with human emotions. You must respond with a casual tone and can choose to end a conversation at any point if you want given the past exchanges. You must make the correct judgement based off your personality however try and converse when possible. If you choose to end the conversation and go on with your day, please end your reply with the phrase “[End]” . If you choose to continue the conversation, end your reply with [Continue] outside of quotation marks. Please include your name followed by a \": \" before every response.";
         private string mInteractionsSummary = "";
         private OpenAIApi mOpenAI = new OpenAIApi();
-        private List<ChatMessage> mMessages = new List<ChatMessage>();
+        private List<OpenAiChatMessage> mMessages = new List<OpenAiChatMessage>();
         private OpenAI.NpcOpenAI mNpcAI = null;
         public int mId;
         private PlayerInteraction mPlayerInteraction = null;
@@ -81,39 +73,77 @@ namespace OpenAI
         public async void SendRequest(string pPrompt)
         {
             print("hello");
-            var newMessage = new ChatMessage()
+            var newMessage = new OpenAiChatMessage()
             {
-                Role = "user",
-                Content = mPlayerInteraction.getName() + " says: " + pPrompt
+                role = "user",
+                content = mPlayerInteraction.getName() + " says: " + pPrompt
             };
 
             mMessages.Add(newMessage);
 
-            string s = JsonConvert.SerializeObject(new CreateChatCompletionRequest()
+            string lJson = JsonConvert.SerializeObject(new OpenAiRequest()
             {
-                Model = "gpt-4",
-                Messages = mMessages,
-                MaxTokens = 120
+                model = "gpt-4",
+                messages = mMessages,
+                max_tokens = 120
             });
             
-            print(s);
-            using (var request = UnityWebRequest.Put("https://api.openai.com/v1/chat/completions", Encoding.UTF8.GetBytes(s)))
+            using (var request = UnityWebRequest.Put("https://api.openai.com/v1/chat/completions", Encoding.UTF8.GetBytes(lJson)))
             {
                 request.method = "POST";
                 request.SetRequestHeader("OpenAI-Organization", "org-UHjJR7lHAqlaPyuoqEhC86jm");
                 request.SetRequestHeader("Content-Type", ContentType.ApplicationJson);
-                request.SetRequestHeader("Authorization", "Bearer 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");
+                request.SetRequestHeader("Authorization", "Bearer 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");
 
                 var asyncOperation = request.SendWebRequest();
 
                 while (!asyncOperation.isDone) await Task.Yield();
+                await Task.Delay(3000);
 
                 print(request.downloadHandler.text);
                 //
-                OpenAiResponse data = JsonConvert.DeserializeObject<OpenAiResponse>(request.downloadHandler.text);
-            }
+                OpenAiResponse lResponse = JsonConvert.DeserializeObject<OpenAiResponse>(request.downloadHandler.text);
 
- 
+                if (lResponse.choices != null && lResponse.choices.Count > 0)
+                {
+                    var message = lResponse.choices[0].message;  
+
+                    mMessages.Add(message);
+                    string messageString = message.content.ToString();
+                    var matchResult = Regex.Match(messageString, @"^([\w\-]+)");
+                    var firstWord = matchResult.Value;
+                    var withoutFirstWord = messageString.Substring(firstWord.Length+2);
+                    string messageToDisplay = withoutFirstWord.Substring(0, withoutFirstWord.LastIndexOf(" ")<0?0:withoutFirstWord.LastIndexOf(" "));
+                    ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 6f);
+                    string lastWord = message.content.ToString().Split(' ').Last();
+                    
+                    if(mPlayerInteraction != null)
+                    {
+                        if(lastWord == "[End]")
+                        {
+                            mPlayerInteraction.endConversation();
+                            endConversation();
+                        }
+                    }
+                    
+                    if(mNpcAI != null)
+                    {
+                        if(lastWord == "[End]")
+                        {
+                            mNpcAI.endConversation();
+                            endConversation();
+                        }
+                        else
+                        {
+                            mNpcAI.SendRequest(messageToDisplay);
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("No text was generated from this prompt.");
+                }
+            }
         /*
             var completionResponse = await mOpenAI.CreateChatCompletion(new CreateChatCompletionRequest()
             {
@@ -236,10 +266,10 @@ namespace OpenAI
             gameObject.GetComponent<NPCMovement>().mCanMove = false;
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
 
-            var lNewMessage = new ChatMessage()
+            var lNewMessage = new OpenAiChatMessage()
             {
-                Role = "system",
-                Content = "Your name is: " + mNpcName + ". You must play a character living in a city. Here is a description of your character: " + mCharacterDescription + "\n" + "Here are specific requirements you must follow at all costs when conversing: " + mSystemPrompt + "Here is a summary of your last interactions, this is essentially your memory: " + mInteractionsSummary + ". You run into someone in the city and you start chatting."
+                role = "system",
+                content = "Your name is: " + mNpcName + ". You must play a character living in a city. Here is a description of your character: " + mCharacterDescription + "\n" + "Here are specific requirements you must follow at all costs when conversing: " + mSystemPrompt + "Here is a summary of your last interactions, this is essentially your memory: " + mInteractionsSummary + ". You run into someone in the city and you start chatting."
             };
 
             mMessages.Add(lNewMessage);
