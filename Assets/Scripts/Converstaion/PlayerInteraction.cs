@@ -10,7 +10,6 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     private List<OpenAI.NpcOpenAI> mNpcAIList = new List<OpenAI.NpcOpenAI>();
     private OpenAI.NpcOpenAI mNpcAI = null;
     public bool mInteracting = false;
-    [SerializeField] private string mPlayerName = "Tristan";
     [SerializeField] private TMP_InputField mInputField;
     [SerializeField] private Button mSendButton;
     [SerializeField] private TMP_InputField mNameField;
@@ -52,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     {
         if(mNpcAIList.Count>0 && mInteracting == true)
         {
-            mNpcAI.SendRequest(mInputField.text);
+            mNpcAI.SendRequest(mInputField.text, name);
         }
     }
 
@@ -100,16 +99,11 @@ public class PlayerInteraction : MonoBehaviour, IConversation
         mSendButton.gameObject.SetActive(false);
     }
 
-    public string getName()
-    {
-        return mPlayerName;
-    }
-
     public void changeName()
     {
         if(mNameField != null)
         {
-            mPlayerName = mNameField.text;
+            name = mNameField.text;
         }
     }
 }

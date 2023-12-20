@@ -36,7 +36,6 @@ namespace OpenAI
         public string warning { get; set; }
         public string model { get; set; }
         public string id { get; set; }
-        // public string object { get; set; }
         public long created { get; set; }
         public List<OpenAiChatChoice> choices { get; set; }
         public Usage usage { get; set; }
@@ -55,8 +54,7 @@ namespace OpenAI
     public class NpcOpenAI : MonoBehaviour, IConversation
     {
         [SerializeField] private string mCharacterDescription = "";
-        [SerializeField] private string mNpcName = "";
-        private string mSystemPrompt = "Your playing the role of a character in a city. You must never break character in any conversation ever. Your answers must be very short and concise to flow naturally with the conversation. When asked very specific questions about yourself I give you the freedom to make up your own answer. You must have emotion in your conversation and answer based off emotion. If someone is being mean to you, be mean back and be less likely to help them etc. I want you to act as human as possible with human emotions. You must respond with a casual tone and can choose to end a conversation at any point if you want given the past exchanges. You must make the correct judgement based off your personality however try and converse when possible. If you choose to end the conversation and go on with your day, please end your reply with the phrase “[End]” . If you choose to continue the conversation, end your reply with [Continue] outside of quotation marks. Please include your name followed by a \": \" before every response.";
+        private string mSystemPrompt = "Your playing the role of a character in a city. Keep your responses short and concise. When you speak, speak properly with proper english. Don't use metaphors or hint at anything. You must never break character in any conversation ever. Your answers must be very short and concise to flow naturally with the conversation. Ask questions and have genuine conversations because you will also be talking with other AI NPC's. Don't be friendly with strangers. Don't talk to people you don't know for too long. When asked very specific questions about yourself I give you the freedom to make up your own answer. You must have emotion in your conversation and answer based off emotion. If someone is being mean to you, be mean back and be less likely to help them etc. I want you to act as human as possible with human emotions. You must respond with a casual tone and can choose to end a conversation at any point if you want given the past exchanges. You must make the correct judgement based off your personality however try and converse when possible. If you choose to end the conversation and go on with your day, please end your reply with the phrase “[End]” . If you choose to continue the conversation, end your reply with [Continue] outside of quotation marks. Please include your name followed by a \": \" before every response.";
         private string mInteractionsSummary = "";
         private OpenAIApi mOpenAI = new OpenAIApi();
         private List<OpenAiChatMessage> mMessages = new List<OpenAiChatMessage>();
@@ -70,13 +68,12 @@ namespace OpenAI
             mId = (int)UnityEngine.Random.Range(-1000000000, 1000000000);
         }
 
-        public async void SendRequest(string pPrompt)
+        public async void SendRequest(string pPrompt, string senderName)
         {
-            print("hello");
             var newMessage = new OpenAiChatMessage()
             {
                 role = "user",
-                content = mPlayerInteraction.getName() + " says: " + pPrompt
+                content = senderName + " says: " + pPrompt
             };
 
             mMessages.Add(newMessage);
@@ -93,15 +90,13 @@ namespace OpenAI
                 request.method = "POST";
                 request.SetRequestHeader("OpenAI-Organization", "org-UHjJR7lHAqlaPyuoqEhC86jm");
                 request.SetRequestHeader("Content-Type", ContentType.ApplicationJson);
-                request.SetRequestHeader("Authorization", "Bearer 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");
+                request.SetRequestHeader("Authorization", "Bearer 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");
 
                 var asyncOperation = request.SendWebRequest();
 
                 while (!asyncOperation.isDone) await Task.Yield();
-                await Task.Delay(3000);
+                await Task.Delay(4000);
 
-                print(request.downloadHandler.text);
-                //
                 OpenAiResponse lResponse = JsonConvert.DeserializeObject<OpenAiResponse>(request.downloadHandler.text);
 
                 if (lResponse.choices != null && lResponse.choices.Count > 0)
@@ -114,7 +109,7 @@ namespace OpenAI
                     var firstWord = matchResult.Value;
                     var withoutFirstWord = messageString.Substring(firstWord.Length+2);
                     string messageToDisplay = withoutFirstWord.Substring(0, withoutFirstWord.LastIndexOf(" ")<0?0:withoutFirstWord.LastIndexOf(" "));
-                    ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 6f);
+                    ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 5f);
                     string lastWord = message.content.ToString().Split(' ').Last();
                     
                     if(mPlayerInteraction != null)
@@ -132,10 +127,11 @@ namespace OpenAI
                         {
                             mNpcAI.endConversation();
                             endConversation();
+                            mNpcAI = null;
                         }
                         else
                         {
-                            mNpcAI.SendRequest(messageToDisplay);
+                            mNpcAI.SendRequest(messageToDisplay, name);
                         }
                     }
                 }
@@ -144,54 +140,6 @@ namespace OpenAI
                     Debug.LogWarning("No text was generated from this prompt.");
                 }
             }
-        /*
-            var completionResponse = await mOpenAI.CreateChatCompletion(new CreateChatCompletionRequest()
-            {
-                Model = "gpt-4",
-                Messages = mMessages,
-                MaxTokens = 120
-            });
-
-            if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
-            {
-                var message = completionResponse.Choices[0].Message;  
-
-                mMessages.Add(message);
-                string messageString = message.Content.ToString();
-                var matchResult = Regex.Match(messageString, @"^([\w\-]+)");
-                var firstWord = matchResult.Value;
-                var withoutFirstWord = messageString.Substring(firstWord.Length+2);
-                string messageToDisplay = withoutFirstWord.Substring(0, withoutFirstWord.LastIndexOf(" ")<0?0:withoutFirstWord.LastIndexOf(" "));
-                ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 6f);
-                string lastWord = message.Content.ToString().Split(' ').Last();
-                
-                if(mPlayerInteraction != null)
-                {
-                    if(lastWord == "[End]")
-                    {
-                        mPlayerInteraction.endConversation();
-                        endConversation();
-                    }
-                }
-                
-                if(mNpcAI != null)
-                {
-                    if(lastWord == "[End]")
-                    {
-                        mNpcAI.endConversation();
-                        endConversation();
-                    }
-                    else
-                    {
-                        mNpcAI.SendRequest(messageToDisplay);
-                    }
-                }
-            }
-            else
-            {
-                Debug.LogWarning("No text was generated from this prompt.");
-            }
-            */
         }
 
         private async void summarizeConversation(List<ChatMessage> iMessages)
@@ -234,16 +182,20 @@ namespace OpenAI
             {
                 mPlayerInteraction = iCollision.gameObject.GetComponent<PlayerInteraction>();
             }
-            if(iCollision.gameObject.tag == "NPC")
-            {
-                mNpcAI = iCollision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
 
-                if(mId>mNpcAI.mId)
+            if(iCollision.gameObject.tag == "NPC" && mInteracting == false)
+            {
+                if(iCollision.gameObject.GetComponent<OpenAI.NpcOpenAI>().mInteracting == false)
                 {
-                    beginConversation();
-                    mNpcAI.beginConversation();
-                    mNpcAI.SendRequest("Hello");
-                    ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), "Hello", 6f);
+                    mNpcAI = iCollision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
+
+                    if(mId>mNpcAI.mId)
+                    {
+                        beginConversation();
+                        mNpcAI.beginConversation();
+                        mNpcAI.SendRequest("Hello", name);
+                        ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), "Hello", 6f);
+                    }
                 }
             }
         }
@@ -253,10 +205,6 @@ namespace OpenAI
             if(iCollision.gameObject.tag == "Player")
             {
                 mPlayerInteraction = null;
-            }
-            if(iCollision.gameObject.tag == "NPC")
-            {
-                mNpcAI = null;
             }
         }
 
@@ -269,7 +217,7 @@ namespace OpenAI
             var lNewMessage = new OpenAiChatMessage()
             {
                 role = "system",
-                content = "Your name is: " + mNpcName + ". You must play a character living in a city. Here is a description of your character: " + mCharacterDescription + "\n" + "Here are specific requirements you must follow at all costs when conversing: " + mSystemPrompt + "Here is a summary of your last interactions, this is essentially your memory: " + mInteractionsSummary + ". You run into someone in the city and you start chatting."
+                content = "Your name is: " + name + ". You must play a character living in a city. Here is a description of your character: " + mCharacterDescription + "\n" + "Here are specific requirements you must follow at all costs when conversing: " + mSystemPrompt + "Here is a summary of your last interactions, this is essentially your memory: " + mInteractionsSummary + ". You run into someone in the city and you start chatting."
             };
 
             mMessages.Add(lNewMessage);
@@ -281,11 +229,6 @@ namespace OpenAI
             gameObject.GetComponent<NPCMovement>().mCanMove = true;
             // summarizeConversation(mMessages);
             mMessages.Clear();
-        }
-
-        public string getName()
-        {
-            return name;
         }
     }
 }
