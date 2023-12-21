@@ -2240,7 +2240,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 706670411689979934, guid: 972647dceb7dd3e45aeae0a249befc79, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Tristan
       objectReference: {fileID: 0}
     - target: {fileID: 2184899104827754772, guid: 972647dceb7dd3e45aeae0a249befc79, type: 3}
       propertyPath: m_LocalPosition.x
