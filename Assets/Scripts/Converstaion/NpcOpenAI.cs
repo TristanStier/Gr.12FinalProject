@@ -90,7 +90,7 @@ namespace OpenAI
                 request.method = "POST";
                 request.SetRequestHeader("OpenAI-Organization", "org-UHjJR7lHAqlaPyuoqEhC86jm");
                 request.SetRequestHeader("Content-Type", ContentType.ApplicationJson);
-                request.SetRequestHeader("Authorization", "Bearer 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");
+                request.SetRequestHeader("Authorization", "Bearer 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");
 
                 var asyncOperation = request.SendWebRequest();
 
@@ -102,7 +102,7 @@ namespace OpenAI
                 if (lResponse.choices != null && lResponse.choices.Count > 0)
                 {
                     var message = lResponse.choices[0].message;  
-
+                    print(message);
                     mMessages.Add(message);
                     string messageString = message.content.ToString();
                     var matchResult = Regex.Match(messageString, @"^([\w\-]+)");

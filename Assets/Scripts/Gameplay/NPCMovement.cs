@@ -37,6 +37,6 @@ public class NPCMovement : MonoBehaviour
 
     private void FindNewPatrolPoint()
     {
-        mTargetXPos = (int)Random.Range(-11.0f, 11.0f);
+        mTargetXPos = (int)Random.Range(-11f, 11f);
     }
 }
