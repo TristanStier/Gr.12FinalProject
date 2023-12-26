@@ -58,17 +58,9 @@ namespace OpenAI
         private string mInteractionsSummary = "";
         private OpenAIApi mOpenAI = new OpenAIApi();
         private List<OpenAiChatMessage> mMessages = new List<OpenAiChatMessage>();
-        private OpenAI.NpcOpenAI mNpcAI = null;
-        public int mId;
-        private PlayerInteraction mPlayerInteraction = null;
-        public bool mInteracting = false;
-
-        void Start()
-        {
-            mId = (int)UnityEngine.Random.Range(-1000000000, 1000000000);
-        }
-
-        public async void SendRequest(string pPrompt, string senderName)
+        private IConversation mOther = null;
+  
+        public async void say(string pPrompt, string senderName)
         {
             var newMessage = new OpenAiChatMessage()
             {
@@ -90,7 +82,7 @@ namespace OpenAI
                 request.method = "POST";
                 request.SetRequestHeader("OpenAI-Organization", "org-UHjJR7lHAqlaPyuoqEhC86jm");
                 request.SetRequestHeader("Content-Type", ContentType.ApplicationJson);
-                request.SetRequestHeader("Authorization", "Bearer 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");
+                request.SetRequestHeader("Authorization", "Bearer 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");
 
                 var asyncOperation = request.SendWebRequest();
 
@@ -112,27 +104,14 @@ namespace OpenAI
                     ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 5f);
                     string lastWord = message.content.ToString().Split(' ').Last();
                     
-                    if(mPlayerInteraction != null)
+                    if(lastWord == "[End]")
                     {
-                        if(lastWord == "[End]")
-                        {
-                            mPlayerInteraction.endConversation();
-                            endConversation();
-                        }
+                        mOther.endConversation();
+                        endConversation();
                     }
-                    
-                    if(mNpcAI != null)
+                    else
                     {
-                        if(lastWord == "[End]")
-                        {
-                            mNpcAI.endConversation();
-                            endConversation();
-                            mNpcAI = null;
-                        }
-                        else
-                        {
-                            mNpcAI.SendRequest(messageToDisplay, name);
-                        }
+                        mOther.say(messageToDisplay, name);
                     }
                 }
                 else
@@ -178,39 +157,25 @@ namespace OpenAI
 
         private void OnTriggerEnter2D(Collider2D iCollision)
         {
-            if(iCollision.gameObject.tag == "Player")
+            if (mOther == null)
             {
-                mPlayerInteraction = iCollision.gameObject.GetComponent<PlayerInteraction>();
-            }
-
-            if(iCollision.gameObject.tag == "NPC" && mInteracting == false)
-            {
-                if(iCollision.gameObject.GetComponent<OpenAI.NpcOpenAI>().mInteracting == false)
-                {
-                    mNpcAI = iCollision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
-
-                    if(mId>mNpcAI.mId)
+               IConversation lOther = iCollision.gameObject.GetComponent<IConversation>();
+               if (lOther != null)
+               {
+                    if (lOther.letsTalk(this))
                     {
+                        mOther = lOther;
                         beginConversation();
-                        mNpcAI.beginConversation();
-                        mNpcAI.SendRequest("Hello", name);
+                        mOther.beginConversation();
+                        mOther.say("Hello", name);
                         ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), "Hello", 6f);
                     }
-                }
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D iCollision)
-        {
-            if(iCollision.gameObject.tag == "Player")
-            {
-                mPlayerInteraction = null;
+               }
             }
         }
 
         public void beginConversation()
         {
-            mInteracting = true;
             gameObject.GetComponent<NPCMovement>().mCanMove = false;
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
 
@@ -225,10 +190,28 @@ namespace OpenAI
 
         public void endConversation()
         {
-            mInteracting = false;
             gameObject.GetComponent<NPCMovement>().mCanMove = true;
             // summarizeConversation(mMessages);
             mMessages.Clear();
+            mOther = null;
+        }
+        
+        public bool letsTalk(IConversation iOther)
+        {
+            if (mOther == null)
+            {
+                if(UnityEngine.Random.Range(0, 100) <= iOther.getImportance())
+                {
+                    mOther = iOther;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public int getImportance()
+        {
+            return 33;
         }
     }
 }

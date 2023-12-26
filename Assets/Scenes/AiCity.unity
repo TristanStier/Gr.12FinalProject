@@ -1038,6 +1038,18 @@ PrefabInstance:
         to you so you insult them back when given a price. Only hint at the fact
         that you want drugs don't make it obvious
       objectReference: {fileID: 0}
+    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Color.g
+      value: 0.17864108
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.42
@@ -5892,6 +5904,92 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1325197938
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 152421361473600875, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Name
+      value: Marko
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mCharacterDescription
+      value: You must play the role of a 40 year old male named Alex in a city in
+        UK. You are a busy buisness man who's on track to retire in the next 2 years
+        as a multi-billionare. Everyone else thinks your normal and you don't want
+        anyone knowing your rich because it will put you at danger. Your short tempered,
+        quick witted and smart. You don't talk insults lightly and insult other people
+        back. If someone repeadility bothers you or wastes your time by talking for
+        too long you end the conversation. You are extremly curious and manipulative
+        since you need to most information possible. You read other peoples personality
+        to get them to open up to you. Your an extreme drug addict. You always want
+        to buy drugs but you don't directly ask because you don't want undercover
+        cops to know. You secretly hint that your looking to buy. You always negotiate
+        for a good price. You assume everyone is out to rip you off and it's insulting
+        to you so you insult them back when given a price. Only hint at the fact
+        that you want drugs don't make it obvious
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Color.b
+      value: 0.041342735
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d476421466e703848bde8975534b3da3, type: 3}
 --- !u!1 &1341705750
 GameObject:
   m_ObjectHideFlags: 0
@@ -9559,4 +9657,5 @@ SceneRoots:
   - {fileID: 574250506}
   - {fileID: 1079111734}
   - {fileID: 269827415}
+  - {fileID: 1325197938}
   - {fileID: 1563364420}

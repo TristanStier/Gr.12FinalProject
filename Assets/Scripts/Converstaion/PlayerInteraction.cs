@@ -23,11 +23,15 @@ public class PlayerInteraction : MonoBehaviour, IConversation
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.E) == true && mInteracting == false && mNpcAIList.Count>0)
+        if(Input.GetKey(KeyCode.E) == true && mNpcAIList.Count>0)
         {
-            beginConversation();
-            mNpcAI = getClosestAI();
-            mNpcAI.beginConversation();
+            OpenAI.NpcOpenAI lNpcAI = getClosestAI();
+            if (lNpcAI.letsTalk(this))
+            {
+                beginConversation();
+                mNpcAI = lNpcAI;
+                mNpcAI.beginConversation();
+            }
         }
     }
 
@@ -49,9 +53,9 @@ public class PlayerInteraction : MonoBehaviour, IConversation
 
     public void sendMessage()
     {
-        if(mNpcAIList.Count>0 && mInteracting == true)
+        if(mNpcAI != null)
         {
-            mNpcAI.SendRequest(mInputField.text, name);
+            mNpcAI.say(mInputField.text, name);
         }
     }
 
@@ -84,19 +88,33 @@ public class PlayerInteraction : MonoBehaviour, IConversation
 
     public void beginConversation()
     {
-        mInteracting = true;
         this.gameObject.GetComponent<PlayerMovement>().mCanMove = false;
         this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
         mInputField.gameObject.SetActive(true);
         mSendButton.gameObject.SetActive(true);
     }
 
+    public async void say(string pPrompt, string senderName)
+    {
+        
+    }
+
     public void endConversation()
     {
-        mInteracting = false;
+        mNpcAI = null;
         this.gameObject.GetComponent<PlayerMovement>().mCanMove = true;
         mInputField.gameObject.SetActive(false);
         mSendButton.gameObject.SetActive(false);
+    }
+
+    public bool letsTalk(IConversation iOther)
+    {
+        return false;
+    }
+
+    public int getImportance()
+    {
+        return 100;
     }
 
     public void changeName()
