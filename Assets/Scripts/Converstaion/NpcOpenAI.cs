@@ -82,7 +82,7 @@ namespace OpenAI
                 request.method = "POST";
                 request.SetRequestHeader("OpenAI-Organization", "org-UHjJR7lHAqlaPyuoqEhC86jm");
                 request.SetRequestHeader("Content-Type", ContentType.ApplicationJson);
-                request.SetRequestHeader("Authorization", "Bearer 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");
+                request.SetRequestHeader("Authorization", "Bearer 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");
 
                 var asyncOperation = request.SendWebRequest();
 
