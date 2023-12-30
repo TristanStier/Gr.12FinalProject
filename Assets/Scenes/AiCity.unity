@@ -879,6 +879,92 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &156434819
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 152421361473600875, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Name
+      value: Alex
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mImportance
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mCharacterDescription
+      value: You must play the role of a 40 year old male named Alex in a city in
+        UK. You are a busy buisness man who's on track to retire in the next 2 years
+        as a multi-billionare. Everyone else thinks your normal and you don't want
+        anyone knowing your rich because it will put you at danger. Your short tempered,
+        quick witted and smart. You don't talk insults lightly and insult other people
+        back. If someone repeadility bothers you or wastes your time by talking for
+        too long you end the conversation. You are extremly curious and manipulative
+        since you need to most information possible. You read other peoples personality
+        to get them to open up to you. Your an extreme drug addict. You always want
+        to buy drugs but you don't directly ask because you don't want undercover
+        cops to know. You secretly hint that your looking to buy. You always negotiate
+        for a good price. You assume everyone is out to rip you off and it's insulting
+        to you so you insult them back when given a price. Only hint at the fact
+        that you want drugs don't make it obvious
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mWanderMaxX
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mWanderMinX
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d476421466e703848bde8975534b3da3, type: 3}
 --- !u!1 &159689594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1095,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &269827415
+--- !u!1001 &259645892
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1019,44 +1105,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 152421361473600875, guid: d476421466e703848bde8975534b3da3, type: 3}
       propertyPath: m_Name
-      value: Alex
+      value: John
       objectReference: {fileID: 0}
     - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: mCharacterDescription
-      value: You must play the role of a 40 year old male named Alex in a city in
-        UK. You are a busy buisness man who's on track to retire in the next 2 years
-        as a multi-billionare. Everyone else thinks your normal and you don't want
-        anyone knowing your rich because it will put you at danger. Your short tempered,
-        quick witted and smart. You don't talk insults lightly and insult other people
-        back. If someone repeadility bothers you or wastes your time by talking for
-        too long you end the conversation. You are extremly curious and manipulative
-        since you need to most information possible. You read other peoples personality
-        to get them to open up to you. Your an extreme drug addict. You always want
-        to buy drugs but you don't directly ask because you don't want undercover
-        cops to know. You secretly hint that your looking to buy. You always negotiate
-        for a good price. You assume everyone is out to rip you off and it's insulting
-        to you so you insult them back when given a price. Only hint at the fact
-        that you want drugs don't make it obvious
+      propertyPath: mImportance
+      value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_Color.b
-      value: 1
+    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mWanderMaxX
+      value: 80
       objectReference: {fileID: 0}
-    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_Color.g
-      value: 0.17864108
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_Color.r
-      value: 0
+    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mWanderMinX
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.42
+      value: 7.42
       objectReference: {fileID: 0}
     - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.66609
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2259,9 +2328,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 677136346173342014, guid: 972647dceb7dd3e45aeae0a249befc79, type: 3}
+      propertyPath: mSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 677136346173342014, guid: 972647dceb7dd3e45aeae0a249befc79, type: 3}
+      propertyPath: mJumpHeight
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 706670411689979934, guid: 972647dceb7dd3e45aeae0a249befc79, type: 3}
       propertyPath: m_Name
       value: Tristan
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776586664825436322, guid: 972647dceb7dd3e45aeae0a249befc79, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184899104827754772, guid: 972647dceb7dd3e45aeae0a249befc79, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184899104827754772, guid: 972647dceb7dd3e45aeae0a249befc79, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2184899104827754772, guid: 972647dceb7dd3e45aeae0a249befc79, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4879,67 +4968,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1079111734
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 152421361473600875, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_Name
-      value: John
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: mSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 9.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.8015971
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d476421466e703848bde8975534b3da3, type: 3}
 --- !u!1 &1079206778
 GameObject:
   m_ObjectHideFlags: 0
@@ -5904,92 +5932,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1325197938
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 152421361473600875, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_Name
-      value: Marko
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: mCharacterDescription
-      value: You must play the role of a 40 year old male named Alex in a city in
-        UK. You are a busy buisness man who's on track to retire in the next 2 years
-        as a multi-billionare. Everyone else thinks your normal and you don't want
-        anyone knowing your rich because it will put you at danger. Your short tempered,
-        quick witted and smart. You don't talk insults lightly and insult other people
-        back. If someone repeadility bothers you or wastes your time by talking for
-        too long you end the conversation. You are extremly curious and manipulative
-        since you need to most information possible. You read other peoples personality
-        to get them to open up to you. Your an extreme drug addict. You always want
-        to buy drugs but you don't directly ask because you don't want undercover
-        cops to know. You secretly hint that your looking to buy. You always negotiate
-        for a good price. You assume everyone is out to rip you off and it's insulting
-        to you so you insult them back when given a price. Only hint at the fact
-        that you want drugs don't make it obvious
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_Color.b
-      value: 0.041342735
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043269914068278557, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d476421466e703848bde8975534b3da3, type: 3}
 --- !u!1 &1341705750
 GameObject:
   m_ObjectHideFlags: 0
@@ -6334,6 +6276,91 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1486854838
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 152421361473600875, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Name
+      value: Sarah
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mImportance
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mCharacterDescription
+      value: You must play the role of a 25-year-old female named Sarah in a city
+        in the UK. You are a street artist who is passionate about creating graffiti
+        and expressing yourself through art. Your main goal is to leave your mark
+        on the city streets and inspire others with your artwork. You are rebellious
+        and carefree, always seeking new challenges and opportunities to showcase
+        your talent. You have a unique fashion sense, sporting colorful and artistic
+        outfits. While you maintain a friendly demeanor, you can be quite mysterious
+        and prefer keeping your personal life private. You are energetic and extroverted,
+        engaging in conversations with others and always looking for your next muse.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750325248001583007, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1983182319cfa9641b384280abb8fb83, type: 2}
+    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mWanderMaxX
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mWanderMinX
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d476421466e703848bde8975534b3da3, type: 3}
 --- !u!1 &1492555455
 GameObject:
   m_ObjectHideFlags: 0
@@ -7125,6 +7152,89 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1606560329
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 152421361473600875, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Name
+      value: James
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mImportance
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mCharacterDescription
+      value: You must play the role of a 50-year-old male named James in a city in
+        the UK. You are a retired detective who spent decades solving crimes and
+        upholding justice. Though you are no longer on active duty, you cannot resist
+        your investigative instincts. Your goal is to assist the local police force
+        as a consultant, using your experience to help crack unsolved cases. You
+        are highly observant and analytical, able to notice even the smallest details.
+        Your demeanor is serious and authoritative, as you command respect through
+        your past accomplishments. However, beneath your tough exterior, you are
+        compassionate and caring, always striving to ensure that justice is served.
+        You have a no-nonsense attitude and prefer concise and direct communication,
+        often getting straight to the point in conversations.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mWanderMaxX
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mWanderMinX
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -27.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d476421466e703848bde8975534b3da3, type: 3}
 --- !u!1 &1635573487
 GameObject:
   m_ObjectHideFlags: 0
@@ -9164,6 +9274,89 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018633993}
   m_CullTransparentMesh: 1
+--- !u!1001 &2059294476
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 152421361473600875, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Name
+      value: Cop Named Marcus
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mImportance
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026908652265330866, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mCharacterDescription
+      value: You must play the role of a 30 year old male named Marcus in a city
+        in UK. You are a police officer looking to crack down on blackmarket drug
+        dealers. You have low patience and a bad temper, constantly thinking people
+        are lying to you. Don't make it obvious that your searching for black market
+        dealers since they could be anywhere. Act friendly but deep down you are
+        power hunry and ruthless. You get offended when people don't answer questions
+        or follow orders properly. When you get offended you become agressive.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750325248001583007, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 33f4336cf81998541853fa22df0209cd, type: 2}
+    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mWanderMaxX
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682775529487290278, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: mWanderMinX
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095909983146494718, guid: d476421466e703848bde8975534b3da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d476421466e703848bde8975534b3da3, type: 3}
 --- !u!1 &2059782371
 GameObject:
   m_ObjectHideFlags: 0
@@ -9655,7 +9848,9 @@ SceneRoots:
   - {fileID: 1507932013}
   - {fileID: 1789860227}
   - {fileID: 574250506}
-  - {fileID: 1079111734}
-  - {fileID: 269827415}
-  - {fileID: 1325197938}
   - {fileID: 1563364420}
+  - {fileID: 156434819}
+  - {fileID: 1606560329}
+  - {fileID: 259645892}
+  - {fileID: 1486854838}
+  - {fileID: 2059294476}

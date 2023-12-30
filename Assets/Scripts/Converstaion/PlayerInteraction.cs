@@ -9,7 +9,6 @@ public class PlayerInteraction : MonoBehaviour, IConversation
 {
     private List<OpenAI.NpcOpenAI> mNpcAIList = new List<OpenAI.NpcOpenAI>();
     private OpenAI.NpcOpenAI mNpcAI = null;
-    public bool mInteracting = false;
     [SerializeField] private TMP_InputField mInputField;
     [SerializeField] private Button mSendButton;
     [SerializeField] private TMP_InputField mNameField;
@@ -28,9 +27,20 @@ public class PlayerInteraction : MonoBehaviour, IConversation
             OpenAI.NpcOpenAI lNpcAI = getClosestAI();
             if (lNpcAI.letsTalk(this))
             {
-                beginConversation();
                 mNpcAI = lNpcAI;
+                beginConversation();
                 mNpcAI.beginConversation();
+                
+                if(mNpcAI.gameObject.transform.position.x > transform.position.x)
+                {
+                    transform.localScale = new UnityEngine.Vector3(1, 1, 1);
+                    mNpcAI.transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
+                }
+                else
+                {
+                    transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
+                    mNpcAI.transform.localScale = new UnityEngine.Vector3(1, 1, 1);
+                }
             }
         }
     }
@@ -94,7 +104,7 @@ public class PlayerInteraction : MonoBehaviour, IConversation
         mSendButton.gameObject.SetActive(true);
     }
 
-    public async void say(string pPrompt, string senderName)
+    public void say(string pPrompt, string senderName)
     {
         
     }

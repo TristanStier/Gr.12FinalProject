@@ -5,17 +5,15 @@ public class PlayerMovement : MonoBehaviour
 {
     // References
     private Rigidbody2D mRigidBody;
-    [SerializeField] private float mSpeed = 10;
-    [SerializeField] private float mJumpHeight = 5;
-    private BoxCollider2D mBoxCollider;
-    [SerializeField] private LayerMask mGroundLayer;
+    [SerializeField] private float mSpeed = 7;
     public bool mCanMove = true;
+    private Animator mAnimator;
 
     private void Awake()
     {
         // Setting References
         mRigidBody = GetComponent<Rigidbody2D>();
-        mBoxCollider = GetComponent<BoxCollider2D>();
+        mAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -38,21 +36,6 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
         }
 
-        // Jumping
-        if(Input.GetKey(KeyCode.Space) && isGrounded() && mCanMove == true)
-        {
-            Jump();
-        }
-    }
-
-    private void Jump()
-    {
-        mRigidBody.velocity = new UnityEngine.Vector2(mRigidBody.velocity.x, mJumpHeight);
-    }
-
-    private bool isGrounded()
-    {
-        RaycastHit2D lRaycastHit = Physics2D.BoxCast(mBoxCollider.bounds.center, mBoxCollider.bounds.size, 0, UnityEngine.Vector2.down, 0.1f, mGroundLayer);
-        return lRaycastHit.collider != null;
+        mAnimator.SetBool("running?", lHorizontalInput != 0);
     }
 }

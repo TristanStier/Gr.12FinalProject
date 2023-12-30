@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 975201808553318103}
   - component: {fileID: 4025588142282330255}
   - component: {fileID: 677136346173342014}
+  - component: {fileID: 2512546671280573974}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -78,11 +79,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 1160036368, guid: 31ff9484e937fdf4b9e53e0470fdaf9e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -152,10 +153,10 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 0.16, y: 0.27}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -197,14 +198,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 0.16, y: 0.27}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 3, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &4025588142282330255
 MonoBehaviour:
@@ -218,8 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed765749d797d2646b4476a97cc0b705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mInteracting: 0
-  mPlayerName: Tristan
   mInputField: {fileID: 0}
   mSendButton: {fileID: 0}
   mNameField: {fileID: 0}
@@ -237,8 +236,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mSpeed: 10
-  mJumpHeight: 7
-  mGroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
   mCanMove: 1
+--- !u!95 &2512546671280573974
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706670411689979934}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 25c768688a3efc3438ec60fe9d3f805a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

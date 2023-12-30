@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7296101642217916963}
   - component: {fileID: 2026908652265330866}
   - component: {fileID: 4682775529487290278}
+  - component: {fileID: 3750325248001583007}
   m_Layer: 8
   m_Name: Npc
   m_TagString: NPC
@@ -78,11 +79,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0.92937565, b: 0, a: 1}
+  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -128,11 +129,11 @@ BoxCollider2D:
     oldSize: {x: 1, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 3, y: 2}
   m_EdgeRadius: 0
 --- !u!50 &4939242711954678314
 Rigidbody2D:
@@ -200,7 +201,7 @@ BoxCollider2D:
     oldSize: {x: 1, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -230,8 +231,7 @@ MonoBehaviour:
     the other person decides to concede. When angry, you have a strong british accent
     and use UK roadman slang. Generally you are a happy and pleasant person to be
     around. You don't like talking too much though so your answers are very short.
-  mNpcName: John
-  mInteracting: 0
+  mImportance: 15
 --- !u!114 &4682775529487290278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,3 +246,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mCanMove: 1
   mSpeed: 2
+  mShouldWander: 1
+  mWanderMaxX: 110
+  mWanderMinX: -110
+--- !u!95 &3750325248001583007
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152421361473600875}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ea6e8d2fc134444bb5b6dc1d625a3f2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

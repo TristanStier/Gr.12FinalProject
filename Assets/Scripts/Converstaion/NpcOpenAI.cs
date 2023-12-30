@@ -54,6 +54,7 @@ namespace OpenAI
     public class NpcOpenAI : MonoBehaviour, IConversation
     {
         [SerializeField] private string mCharacterDescription = "";
+        [SerializeField] private int mImportance = 8;
         private string mSystemPrompt = "Your playing the role of a character in a city. Keep your responses short and concise. When you speak, speak properly with proper english. Don't use metaphors or hint at anything. You must never break character in any conversation ever. Your answers must be very short and concise to flow naturally with the conversation. Ask questions and have genuine conversations because you will also be talking with other AI NPC's. Don't be friendly with strangers. Don't talk to people you don't know for too long. When asked very specific questions about yourself I give you the freedom to make up your own answer. You must have emotion in your conversation and answer based off emotion. If someone is being mean to you, be mean back and be less likely to help them etc. I want you to act as human as possible with human emotions. You must respond with a casual tone and can choose to end a conversation at any point if you want given the past exchanges. You must make the correct judgement based off your personality however try and converse when possible. If you choose to end the conversation and go on with your day, please end your reply with the phrase “[End]” . If you choose to continue the conversation, end your reply with [Continue] outside of quotation marks. Please include your name followed by a \": \" before every response.";
         private string mInteractionsSummary = "";
         private OpenAIApi mOpenAI = new OpenAIApi();
@@ -177,7 +178,7 @@ namespace OpenAI
         public void beginConversation()
         {
             gameObject.GetComponent<NPCMovement>().mCanMove = false;
-            this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
+            gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
 
             var lNewMessage = new OpenAiChatMessage()
             {
@@ -211,7 +212,7 @@ namespace OpenAI
 
         public int getImportance()
         {
-            return 33;
+            return mImportance;
         }
     }
 }

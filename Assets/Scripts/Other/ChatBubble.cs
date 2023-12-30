@@ -9,10 +9,16 @@ public class ChatBubble : MonoBehaviour
 {
     public static void Create(Transform parent, UnityEngine.Vector3 localPosition, string text, float duration)
     {
-        Transform chatBubbleTransform = Instantiate(GameAssets.i.pfChatBubble, parent);
+        GameObject empty = new GameObject();
+        empty.transform.localPosition = parent.localPosition;
+        empty.transform.localRotation = parent.localRotation;
+        empty.transform.localScale =  new UnityEngine.Vector3(1, 1, 1);
+
+        Transform chatBubbleTransform = Instantiate(GameAssets.i.pfChatBubble, empty.transform);
         chatBubbleTransform.localPosition = localPosition;
         chatBubbleTransform.GetComponent<ChatBubble>().Setup(text);
 
+        Destroy(empty, duration);
         Destroy(chatBubbleTransform.gameObject, duration);
     }
 
