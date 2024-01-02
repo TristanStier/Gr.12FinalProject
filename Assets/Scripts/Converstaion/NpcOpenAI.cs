@@ -102,7 +102,7 @@ namespace OpenAI
                     var firstWord = matchResult.Value;
                     var withoutFirstWord = messageString.Substring(firstWord.Length+2);
                     string messageToDisplay = withoutFirstWord.Substring(0, withoutFirstWord.LastIndexOf(" ")<0?0:withoutFirstWord.LastIndexOf(" "));
-                    ChatBubble.Create(this.gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 5f);
+                    ChatBubble.Create(gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 5f);
                     string lastWord = message.content.ToString().Split(' ').Last();
                     
                     if(lastWord == "[End]")

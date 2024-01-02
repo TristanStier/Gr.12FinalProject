@@ -10,8 +10,8 @@ public class ChatBubble : MonoBehaviour
     public static void Create(Transform parent, UnityEngine.Vector3 localPosition, string text, float duration)
     {
         GameObject empty = new GameObject();
-        empty.transform.localPosition = parent.localPosition;
-        empty.transform.localRotation = parent.localRotation;
+        empty.transform.localPosition = parent.position;
+        empty.transform.localRotation = parent.rotation;
         empty.transform.localScale =  new UnityEngine.Vector3(1, 1, 1);
 
         Transform chatBubbleTransform = Instantiate(GameAssets.i.pfChatBubble, empty.transform);

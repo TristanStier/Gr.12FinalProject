@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour, IConversation
 {
+    public static AnimatorController sApearance;
+
     private List<OpenAI.NpcOpenAI> mNpcAIList = new List<OpenAI.NpcOpenAI>();
     private OpenAI.NpcOpenAI mNpcAI = null;
     [SerializeField] private TMP_InputField mInputField;
@@ -18,6 +21,12 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     {
         mInputField.gameObject.SetActive(false);
         mSendButton.gameObject.SetActive(false);
+
+        Animator lAnimator = GetComponent<Animator>();
+        if(sApearance != null)
+        {
+            lAnimator.runtimeAnimatorController = sApearance;
+        }
     }
 
     private void Update()
