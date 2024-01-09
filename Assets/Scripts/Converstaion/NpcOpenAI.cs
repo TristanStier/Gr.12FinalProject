@@ -124,14 +124,6 @@ namespace OpenAI
 
         private async void summarizeConversation(List<OpenAiChatMessage> iMessages)
         {
-            // // INDIVIDUAL INTERACTIONS MEMORY CODE
-            // var summarizePrompt = new OpenAiChatMessage()
-            // {
-            //     role = "user",
-            //     content = "Return to default settings for summarization. Use the context from previous interactions: " + mInteractionsSummary + " to create a first-person memory of the latest conversation. Format: '[Interaction #: ] I met [name], we talked about [key topics], and [conclusion].' Keep it brief, focusing on specific key points and your perspective. Include any self-referential information fabricated during the conversation. This summary will act as your memory for future reference. Keep the memories as short as possible because I don't want them to pile up and use too many tokens in the future."
-            // };
-
-            // BIG SUMMARY MEMORY CODE
             var summarizePrompt = new OpenAiChatMessage()
             {
                 role = "user",
@@ -163,8 +155,7 @@ namespace OpenAI
                 if (lResponse.choices != null && lResponse.choices.Count > 0)
                 {
                     var message = lResponse.choices[0].message;  
-                    mInteractionsSummary = message.content.ToString(); // Big memories
-                    // mInteractionsSummary += "\n" + message.content.ToString(); // Individual memories            
+                    mInteractionsSummary = message.content.ToString();
                     print(mInteractionsSummary);
                 }
             }
