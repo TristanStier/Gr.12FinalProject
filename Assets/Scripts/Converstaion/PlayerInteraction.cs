@@ -14,11 +14,13 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     private OpenAI.NpcOpenAI mNpcAI = null;
     [SerializeField] private TMP_InputField mInputField;
     [SerializeField] private Button mSendButton;
+    [SerializeField] private TMP_Text mTextField;
     
     private void Start()
     {
         mInputField.gameObject.SetActive(false);
         mSendButton.gameObject.SetActive(false);
+        mTextField.gameObject.SetActive(false);
 
         Animator lAnimator = GetComponent<Animator>();
         if(sApearance != null)
@@ -56,7 +58,12 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     {
         if(collision.gameObject.tag == "NPC")
         {
-            mNpcAIList.Add(collision.gameObject.GetComponent<OpenAI.NpcOpenAI>());
+            OpenAI.NpcOpenAI lTempNpc = collision.gameObject.GetComponent<OpenAI.NpcOpenAI>();
+            mNpcAIList.Add(lTempNpc);
+            if(mNpcAI==null && lTempNpc.mInteracting==false)
+            {
+                mTextField.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -65,6 +72,22 @@ public class PlayerInteraction : MonoBehaviour, IConversation
         if(collision.gameObject.tag == "NPC")
         {
             mNpcAIList.Remove(collision.gameObject.GetComponent<OpenAI.NpcOpenAI>());
+            if(mNpcAIList.Count<=0)
+            {
+                mTextField.gameObject.SetActive(false);
+            }
+            else
+            {
+                bool lTextActive = false;
+                for(int i = 0; i<mNpcAIList.Count; i++)
+                {
+                    if(mNpcAIList[i].mInteracting == false)
+                    {
+                        lTextActive = true;
+                    }
+                }
+                mTextField.gameObject.SetActive(lTextActive);
+            }
         }
     }
 
@@ -109,6 +132,7 @@ public class PlayerInteraction : MonoBehaviour, IConversation
         this.gameObject.GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, 0);
         mInputField.gameObject.SetActive(true);
         mSendButton.gameObject.SetActive(true);
+        mTextField.gameObject.SetActive(false);
     }
 
     public void say(string pPrompt, string senderName)

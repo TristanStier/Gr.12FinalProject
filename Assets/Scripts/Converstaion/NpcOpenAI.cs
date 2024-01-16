@@ -60,6 +60,7 @@ namespace OpenAI
         private OpenAIApi mOpenAI = new OpenAIApi();
         private List<OpenAiChatMessage> mMessages = new List<OpenAiChatMessage>();
         private IConversation mOther = null;
+        public bool mInteracting = false;
   
         public async void say(string pPrompt, string senderName)
         {
@@ -192,6 +193,7 @@ namespace OpenAI
             };
 
             mMessages.Add(lNewMessage);
+            mInteracting = true;
         }
 
         public void endConversation()
@@ -200,6 +202,7 @@ namespace OpenAI
             summarizeConversation(mMessages);
             mMessages.Clear();
             mOther = null;
+            mInteracting = false;
         }
         
         public bool letsTalk(IConversation iOther)
