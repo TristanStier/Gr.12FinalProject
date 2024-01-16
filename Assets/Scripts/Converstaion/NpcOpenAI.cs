@@ -30,7 +30,7 @@ namespace OpenAI
         public float? frequency_penalty { get; set; } = 0f;
     }
     
-     public struct OpenAiResponse
+    public struct OpenAiResponse
     {
         public ApiError error { get; set; }
         public string warning { get; set; }
@@ -75,7 +75,7 @@ namespace OpenAI
             {
                 model = "gpt-4",
                 messages = mMessages,
-                max_tokens = 120
+                max_tokens = 400
             });
             
             using (var request = UnityWebRequest.Put("https://api.openai.com/v1/chat/completions", Encoding.UTF8.GetBytes(lJson)))
@@ -98,21 +98,21 @@ namespace OpenAI
                     print(message);
                     mMessages.Add(message);
                     string messageString = message.content.ToString();
-                    var matchResult = Regex.Match(messageString, @"^([\w\-]+)");
-                    var firstWord = matchResult.Value;
-                    var withoutFirstWord = messageString.Substring(firstWord.Length+2);
-                    string messageToDisplay = withoutFirstWord.Substring(0, withoutFirstWord.LastIndexOf(" ")<0?0:withoutFirstWord.LastIndexOf(" "));
-                    ChatBubble.Create(gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), messageToDisplay, 5f);
-                    string lastWord = message.content.ToString().Split(' ').Last();
+                    var lMatchResult = Regex.Match(messageString, @"^([\w\-]+)");
+                    var lFirstWord = lMatchResult.Value;
+                    var lWithoutFirstWord = messageString.Substring(lFirstWord.Length+2);
+                    string lMessageToDisplay = lWithoutFirstWord.Substring(0, lWithoutFirstWord.LastIndexOf(" ")<0?0:lWithoutFirstWord.LastIndexOf(" "));
+                    ChatBubble.Create(gameObject.transform, new UnityEngine.Vector3(1.3f, 2.2f), lMessageToDisplay, 5f);
+                    string lLastWord = message.content.ToString().Split(' ').Last();
                     
-                    if(lastWord == "[End]")
+                    if(lLastWord == "[End]")
                     {
                         mOther.endConversation();
                         endConversation();
                     }
                     else
                     {
-                        mOther.say(messageToDisplay, name);
+                        mOther.say(lMessageToDisplay, name);
                     }
                 }
                 else
@@ -136,7 +136,7 @@ namespace OpenAI
             {
                 model = "gpt-4",
                 messages = iMessages,
-                max_tokens = 120
+                max_tokens = 400
             });
             
             using (var request = UnityWebRequest.Put("https://api.openai.com/v1/chat/completions", Encoding.UTF8.GetBytes(lJson)))

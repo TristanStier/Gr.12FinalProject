@@ -36,6 +36,6 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
         }
 
-        mAnimator.SetBool("running?", lHorizontalInput != 0);
+        mAnimator.SetBool("running?", mRigidBody.velocity.x != 0);
     }
 }

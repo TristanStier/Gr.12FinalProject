@@ -14,8 +14,6 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     private OpenAI.NpcOpenAI mNpcAI = null;
     [SerializeField] private TMP_InputField mInputField;
     [SerializeField] private Button mSendButton;
-    [SerializeField] private TMP_InputField mNameField;
-    [SerializeField] private Button mChangeNameButton;
     
     private void Start()
     {
@@ -134,13 +132,5 @@ public class PlayerInteraction : MonoBehaviour, IConversation
     public int getImportance()
     {
         return 100;
-    }
-
-    public void changeName()
-    {
-        if(mNameField != null)
-        {
-            name = mNameField.text;
-        }
     }
 }
