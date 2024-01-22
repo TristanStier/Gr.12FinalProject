@@ -61,6 +61,7 @@ namespace OpenAI
         private List<OpenAiChatMessage> mMessages = new List<OpenAiChatMessage>();
         private IConversation mOther = null;
         public bool mInteracting = false;
+        private string API_KEY = "";
   
         public async void say(string pPrompt, string senderName)
         {
@@ -84,7 +85,7 @@ namespace OpenAI
                 request.method = "POST";
                 request.SetRequestHeader("OpenAI-Organization", "org-UHjJR7lHAqlaPyuoqEhC86jm");
                 request.SetRequestHeader("Content-Type", ContentType.ApplicationJson);
-                request.SetRequestHeader("Authorization", "Bearer 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");
+                request.SetRequestHeader("Authorization", ("Bearer + " + API_KEY));
 
                 var asyncOperation = request.SendWebRequest();
 
