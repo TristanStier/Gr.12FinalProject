@@ -55,7 +55,7 @@ namespace OpenAI
     {
         [SerializeField] private string mCharacterDescription = "";
         [SerializeField] private int mImportance = 8;
-        private string mSystemPrompt = "Role-play as a city-dweller with brief, clear responses. Use proper English without metaphors. Remain in character, limit interactions with strangers, and invent personal details as needed. Respond emotionally—reciprocate attitudes. Casual tone encouraged; may exit conversations at discretion with [End] or continue with [Continue]. Please include your name followed by a \": \" before every response. ";
+        private string mSystemPrompt = "Role-play as a city-dweller with brief, clear responses. Use proper English without metaphors. Remain in character, limit interactions with strangers, and invent personal details as needed. Respond emotionally—reciprocate attitudes. Casual tone encouraged. You must end each response with either [End] or [Continue]. You may exit conversations at discretion with [End] or continue with [Continue] if you believe that the conversation is coming to an end. Please include your name followed by a \": \" before every response. ";
         private string mInteractionsSummary = "";
         private OpenAIApi mOpenAI = new OpenAIApi();
         private List<OpenAiChatMessage> mMessages = new List<OpenAiChatMessage>();
